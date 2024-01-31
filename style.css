@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+body {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    background-color: lightblue;
+    height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.case {
+    border: 2px solid black;
+    width: 19rem;
+    height: 30rem;
+    
+    
+}
+.display{
+    border: 2px solid black;
+    background-color: lightgray;
+    text-align:center;
+    font-size: 50px;
+}
+.buttons{
+    display: flex;
+    height: 95%;
+    width: 90%;
+    margin-top: 1px;
+    padding: 5px;
+}
+.numbersB{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: ;
+}
+
+button{
+    padding: 2em;
+    gap: 3em;
+    margin: 0;
+    width: 4rem;
+    height: 4rem;
+    
+}
