@@ -1,11 +1,12 @@
-* {
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
     margin: 0;
     padding: 0;
-  }
-  *,
-  *::after,
-  *::before {
-    box-sizing: border-box;
+    box-sizing: inherit;
   }
 body {
     display: flex;
@@ -21,8 +22,8 @@ body {
 
 .case {
     border: 2px solid black;
-    width: 19rem;
-    height: 30rem;
+    width: 25em;
+    height: 48rem;
     
     
 }
@@ -32,25 +33,30 @@ body {
     text-align:center;
     font-size: 50px;
 }
-.buttons{
-    display: flex;
-    height: 95%;
-    width: 90%;
-    margin-top: 1px;
-    padding: 5px;
-}
-.numbersB{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    width: ;
-}
-
 button{
-    padding: 2em;
-    gap: 3em;
+    padding: 1.5em;
+    gap: 1em;
     margin: 0;
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height:6rem;
+    width: 100%;
     
+}
+.buttonsNumbers{
+display:grid;
+grid-template-columns: repeat(4,1fr);
+border:0;
+margin: 0;
+
+}
+.span1{
+    grid-column: span 1;
+    
+}
+.span2{
+    grid-column: span 2;
+}
+/* Botones primera fila */
+.orange{
+    background-color: orange;
 }
