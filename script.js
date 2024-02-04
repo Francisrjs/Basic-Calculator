@@ -27,46 +27,18 @@ function operate(op,x,y){
             return "OOPS";
     }
 }
-function generateNumbers(){
-var numbersB=document.getElementsByClassName("numbersB")[0];
-
-    for(let i=1;i<=9;i++){
-const buttonsN=document.createElement("button");
-    numbersB.appendChild(buttonsN);
-    buttonsN.classList="ButtonsN";
-    buttonsN.id=i;
-    buttonsN.value=i;
-    buttonsN.innerHTML=i;
-    }
-//si es 0 y  punto
-for(let i=0;i<=2;i++){
-    if(i==0){
-        const buttonsN=document.createElement("button");
-        numbersB.appendChild(buttonsN);
-        buttonsN.classList="ButtonsN";
-        buttonsN.id=i;
-        buttonsN.value=i;
-        buttonsN.innerHTML=i;
-    }
-  if (i==1){
-    const buttonsN=document.createElement("button");
-    numbersB.appendChild(buttonsN);
-    buttonsN.classList="ButtonF";
-    buttonsN.id=".";
-    buttonsN.value=".";
-    buttonsN.innerHTML=".";
-  }
-  if (i==2){
-    const buttonsN=document.createElement("button");
-    numbersB.appendChild(buttonsN);
-    buttonsN.classList="Button=";
-    buttonsN.id="=";
-    buttonsN.value="=";
-    buttonsN.innerHTML="=";
-  }
-}
-
-
-}
-generateNumbers()
 console.log(sum(1,2),divide(3,2));
+//Resultados
+document.addEventListener("DOMContentLoaded", function () {
+    const numbers = document.querySelectorAll(".Number");
+    const display = document.querySelector(".display");
+
+    const functionNumber = function () {
+        const result = parseInt(this.innerHTML, 10);
+        console.log(result);
+    };
+
+    for (let i = 0; i < numbers.length; i++) {
+        numbers[i].addEventListener('click', functionNumber, false);
+    }
+});
