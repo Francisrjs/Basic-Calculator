@@ -8,17 +8,17 @@ function multiplication(x, y) {
   return x * y;
 }
 function divide(x, y) {
-  return (x / y).toFixed(2);
+  return (x / y).toFixed(1);
 }
 function operate(op, x, y) {
   switch (op) {
-    case "+":
+    case '+':
       return sum(x, y);
-    case "-":
+    case '-':
       return rest(x, y);
-    case "*":
+    case '*':
       return multiplication(x, y);
-    case "/":
+    case '/':
       return divide(x, y);
     default:
       return "OOPS";
@@ -35,32 +35,50 @@ var operation = "";
 const functionCalc = function (type, x) {
   switch (type) {
     case "number": {
-      const num = parseInt(x.innerHTML, 10);
-      console.log(num);
-      if (firstNumber == 0 && usingOperator == false) {
-        firstNumber = num;
+      let num = 0;
+      if (display.innerHTML == "*" || display.innerHTML == "-" || display.innerHTML == "/" || display.innerHTML == "+") {
+        num = 0;
+        console.log("true, cambia el operador");
+      
+      } else {
+        num = parseInt(x.innerHTML, 10);
+      }
+      
+      if (usingOperator == false) {
+        // Si no se está usando un operador, se trata del primer número
+        if (display.innerHTML== "0" || display.innerHTML=="-0"){
+          display.innerHTML = num;
+        }else {
+          display.innerHTML += num; // Concatenar al final de la cadena
+        }
+        
+        firstNumber = parseInt(display.innerHTML); // Actualizar el primer número
         console.log("first!");
       } else {
-        secondNumber = num;
-        console.log("second!");
+        // Si se está usando un operador, se trata del segundo número
+        secondNumber = parseInt(x.innerHTML, 10); // Establecer el segundo número
+        display.innerHTML = secondNumber; // Actualizar el display con el segundo número
+        console.log("second! ", secondNumber);
       }
-      result = +num;
-      display.innerHTML = num;
       break;
     }
     case "sign": {
-      display.innerHTML = x.innerHTML;
+      if (x.innerHTML === "-") {
+        display.innerHTML = "-";
+      } else {
+        display.innerHTML = x.innerHTML;
+      }
       break;
     }
     case "operation": {
-      firstNumber = 0;
       if (usingOperator == false) {
         usingOperator = true;
-        //aca habilitamos el operador
+        operation = x.innerHTML;
+        console.log(operation);
       } else {
         console.log(usingOperator);
       }
-      operation = x.innerHTML;
+      display.innerHTML = operation;
       break;
     }
     default: {
@@ -70,14 +88,14 @@ const functionCalc = function (type, x) {
   }
 };
 const equals = function () {
-  console.log("funcionando");
   if (usingOperator == true) {
-    operate(operation, firstNumber, secondNumber);
+    result = operate(operation, firstNumber, secondNumber); // Calcula el resultado usando la función operate
+    display.innerHTML = result; // Actualiza la pantalla con el resultado
+    firstNumber = result; // Actualiza el primer número con el resultado para futuras operaciones
+    secondNumber = 0; // Reinicia secondNumber después de usarlo
+    usingOperator = false;
+    console.log("RESULTADO ",result)
   }
-  display.innerHTML = result;
-  firstNumber = result;
-  console.log(result);
-  secondNumber = 0; // Reinicia secondNumber después de usarlo
 };
 document.addEventListener("DOMContentLoaded", function () {
   const numbers = document.querySelectorAll(".Number");
