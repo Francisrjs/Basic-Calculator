@@ -1,3 +1,4 @@
+//Operations
 function sum(x, y) {
   return x + y;
 }
@@ -8,7 +9,7 @@ function multiplication(x, y) {
   return x * y;
 }
 function divide(x, y) {
-  return (x / y).toFixed(1);
+  return parseFloat((x / y).toFixed(1 ));
 }
 function operate(op, x, y) {
   switch (op) {
@@ -25,51 +26,57 @@ function operate(op, x, y) {
   }
 }
 console.log(sum(1, 2), divide(3, 2));
-//Resultados
 const display = document.querySelector(".display");
 let result = 0;
 let firstNumber = 0;
 let secondNumber = 0;
 var usingOperator = false;
 var operation = "";
+//Funcion by type
 const functionCalc = function (type, x) {
   switch (type) {
     case "number": {
       let num = 0;
+      //Detect operation
       if (display.innerHTML == "*" || display.innerHTML == "-" || display.innerHTML == "/" || display.innerHTML == "+") {
         num = 0;
-        console.log("true, cambia el operador");
-      
+        display.innerHTML="";
       } else {
+        //to Number
         num = parseInt(x.innerHTML, 10);
       }
       
       if (usingOperator == false) {
-        // Si no se está usando un operador, se trata del primer número
+      
         if (display.innerHTML== "0" || display.innerHTML=="-0"){
           display.innerHTML = num;
         }else {
-          display.innerHTML += num; // Concatenar al final de la cadena
+          display.innerHTML += num; 
         }
         
-        firstNumber = parseInt(display.innerHTML); // Actualizar el primer número
-        console.log("first!");
+        firstNumber = parseInt(display.innerHTML); 
+        console.log("first number!");
       } else {
-        // Si se está usando un operador, se trata del segundo número
-        secondNumber = parseInt(x.innerHTML, 10); // Establecer el segundo número
-        display.innerHTML = secondNumber; // Actualizar el display con el segundo número
-        console.log("second! ", secondNumber);
+        
+        secondNumber = parseInt(x.innerHTML, 10); 
+        display.innerHTML += secondNumber; 
+        console.log("second number! ", secondNumber);
       }
       break;
     }
     case "sign": {
-      if (x.innerHTML === "-") {
-        display.innerHTML = "-";
-      } else {
-        display.innerHTML = x.innerHTML;
+      // Verificar si el display está definido
+      if (display) {
+        if (display.innerHTML.startsWith("-")) {
+          display.innerHTML = display.innerHTML.substring(1); // Elimina el signo negativo
+        } else {
+          display.innerHTML = "-" + display.innerHTML; // Agrega un signo negativo
+        }
       }
+      firstNumber=parseInt(display.innerHTML,10);
       break;
     }
+    
     case "operation": {
       if (usingOperator == false) {
         usingOperator = true;
@@ -97,6 +104,12 @@ const equals = function () {
     console.log("RESULTADO ",result)
   }
 };
+const clear= function(){
+  result=0;
+  display.innerHTML=0;
+  firstNumber=0;
+  secondNumber=0;
+}
 document.addEventListener("DOMContentLoaded", function () {
   const numbers = document.querySelectorAll(".Number");
 
@@ -117,5 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const equal = document.querySelector(".equal");
   equal.addEventListener("click", function () {
     equals();
+  });
+  const clearB= document.querySelector(".clear");
+  clearB.addEventListener('click',function(){
+    clear();
+  });
+  const ChangeSign= document.querySelector(".changeSign");
+  ChangeSign.addEventListener('click',function(){
+    functionCalc("sign",this.ChangeSign);
   });
 });
