@@ -139,4 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ChangeSign.addEventListener('click',function(){
     functionCalc("sign",this.ChangeSign);
   });
+  const point= document.querySelector(".point");
+  point.addEventListener('click',function(){
+    display.innerHTML+=".";
+  })
 });
